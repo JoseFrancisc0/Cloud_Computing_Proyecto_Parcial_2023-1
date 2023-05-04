@@ -14,7 +14,7 @@ DONE:
     - {model}.py (Los endpoints para las APIs de cada modelo)
 
 TO DO:
-1. Backend
+1. Backend:
     Supongo si logra funcionar de manera local, podrá funcionar con contenedores
     - Levantar la base de datos:
         - Primero la probamos en una base de datos local
@@ -24,17 +24,17 @@ TO DO:
         - Dependiendo como funcione, modificamos los archivos
         - Una vez funcione como debería, procedemos a la siguiente fase
     
-2. Frontend
+2. Frontend:
     Lo mismo que en backend, probamos local y de ahi a contenedores
     - Crear una web que use las APIs
         - No tengo ni idea de çómo hacerla con un framework de javascript (como Vue).
         - Si alguien sabe, que lo intente. Caso contrario probamos con puro HTML
-    - Probar la web
+    - Probar la web:
         - Levantamos la aplicacion en Local y probamos a ver si funciona como debe.
         - Dependiendo de como resulte, modificamos los archivos
         - Una vez funcione como deberia, procedemos a la siguiente fase
 
-3. Containers
+3. Containers:
     Si llegamos hasta acá es porque la aplicación en bloque funciona localmente
     - Separamos por contenedores
         - Supongo que tendremos un total de 5 contenedores : 4 para las APIs, 1 para la aplicacion (app.py, models.py y el frontend estatico)
@@ -43,7 +43,7 @@ TO DO:
         - Creo que podemos probar cada contenedor de las APIs por su lado en Testfully.
         - Para probar la aplicacion levantariamos todo en un solo docker-compose
 
-4. El resto
+4. El resto:
     Mas que ser lo ultimo, creo que deberia realizarse en paralelo con la aplicacion
     - Lo del diagrama de solucion
     - La documentacion de la aplicacion (el readme)
