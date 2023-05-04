@@ -14,6 +14,8 @@ DONE:
     - {model}.py (Los endpoints para las APIs de cada modelo)
 
 TO DO:
+FALTA CONVERTIR LA APIS A MICROSERVICIOS (que puedan correr por separado)
+
 1. Backend:
     Supongo si logra funcionar de manera local, podrá funcionar con contenedores
     - Levantar la base de datos:
