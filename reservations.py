@@ -7,6 +7,37 @@ reservations_api.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:nKaq
 reservations_api.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(reservations_api)
 
+# Client Model
+class Client(db.Model):
+    __tablename__ = 'clients'
+    id = db.Column(db.Integer, primary_key = True, nullable = False)
+    firstname = db.Column(db.String(30), nullable = False)
+    lastname = db.Column(db.String(30), nullable = False)
+
+    def __repr__(self):
+        return f'<Client {self.id}>'
+
+# Car Model
+class Car(db.Model):
+    __tablename__ = 'cars'
+    id = db.Column(db.Integer, primary_key = True, nullable = False)
+    brand = db.Column(db.String(30), nullable = False)
+    model = db.Column(db.String(60), nullable = False)
+    type_of_car = db.Column(db.String(30), nullable = False)
+    year_car = db.Column(db.Integer, nullable = False)
+    cost_per_day = db.Column(db.Integer, nullable = False)
+    def __repr__(self):
+        return f'<Car {self.id}>'
+    
+# Location Model
+class Location(db.Model):
+    __tablename__ = 'locations'
+    id = db.Column(db.Integer, primary_key = True, nullable = False)
+    address = db.Column(db.String(120), nullable = False)
+    district = db.Column(db.String(50), nullable = False)
+    def __repr__(self):
+        return f'<Location {self.id}>'
+
 # Resevation Model
 class Reservation(db.Model):
     __tablename__ = 'reservations'
