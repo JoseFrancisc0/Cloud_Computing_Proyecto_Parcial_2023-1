@@ -1,0 +1,19 @@
+version: "3.3"
+
+services:
+  clients-api:
+    image: josefrancisc0/proyecto_clients-api
+    ports:
+      - 8011:8011
+  cars-api:
+    image: josefrancisc0/proyecto_cars-api
+    ports:
+      - 8012:8012
+  locations-api:
+    image: josefrancisc0/proyecto_locations-api
+    ports:
+      - 8013:8013
+  reservations-api:
+    image: josefrancisc0/proyecto_reservations-api
+    ports:
+      - 8014:8014
