@@ -13,7 +13,6 @@ class Client(db.Model):
     id = db.Column(db.Integer, primary_key = True, nullable = False)
     firstname = db.Column(db.String(30), nullable = False)
     lastname = db.Column(db.String(30), nullable = False)
-    reservation = db.relationship("Reservation", backref="clients")
 
     def __repr__(self):
         return f'<Client {self.id}>'

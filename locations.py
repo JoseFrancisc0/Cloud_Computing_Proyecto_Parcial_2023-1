@@ -13,8 +13,6 @@ class Location(db.Model):
     id = db.Column(db.Integer, primary_key = True, nullable = False)
     address = db.Column(db.String(120), nullable = False)
     district = db.Column(db.String(50), nullable = False)
-    reservation = db.relationship("Reservation", backref="locations")
-
     def __repr__(self):
         return f'<Location {self.id}>'
 

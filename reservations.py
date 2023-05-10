@@ -1,10 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 
-from clients import Client
-from cars import Car
-from locations import Location
-
 # Flask/SQLAlchemy instance
 reservations_api = Flask(__name__)
 reservations_api.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:nKaqQ1wlHFBq3cGCvB6u@database-proyecto.crt5dlbdpqks.us-east-1.rds.amazonaws.com:5432/postgres"

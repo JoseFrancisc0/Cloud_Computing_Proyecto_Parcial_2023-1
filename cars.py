@@ -16,8 +16,6 @@ class Car(db.Model):
     type_of_car = db.Column(db.String(30), nullable = False)
     year_car = db.Column(db.Integer, nullable = False)
     cost_per_day = db.Column(db.Integer, nullable = False)
-    reservation = db.relationship("Reservation", backref="cars")
-
     def __repr__(self):
         return f'<Car {self.id}>'
 
