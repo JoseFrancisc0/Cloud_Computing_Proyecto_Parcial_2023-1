@@ -1,12 +1,31 @@
-from flask import Blueprint, jsonify, request
-from app import db
-from models import Reservation, Client, Car, Location
+from flask import Flask, jsonify, request
+from flask_sqlalchemy import SQLAlchemy
 
-# BP de la API
-reservations_api = Blueprint('reservations', __name__)
+from clients import Client
+from cars import Car
+from locations import Location
 
+# Flask/SQLAlchemy instance
+reservations_api = Flask(__name__)
+reservations_api.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:nKaqQ1wlHFBq3cGCvB6u@database-proyecto.crt5dlbdpqks.us-east-1.rds.amazonaws.com:5432/postgres"
+reservations_api.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(reservations_api)
+
+# Resevation Model
+class Reservation(db.Model):
+    __tablename__ = 'reservations'
+    id = db.Column(db.Integer, primary_key = True, nullable = False)
+    client_id = db.Column(db.Integer, db.ForeignKey('clients.id'), nullable = False)
+    car_id = db.Column(db.Integer, db.ForeignKey('cars.id'), nullable = False)
+    location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable = False)
+    date = db.Column(db.DateTime, nullable = False)
+    start_of_rental = db.Column(db.DateTime, nullable = False)
+    end_of_rental = db.Column(db.DateTime, nullable = False)
+    total_cost = db.Column(db.Float, nullable = False)
+
+# API ENDPOINTS
 # CREATE
-@reservations_api.route('/reservations', method = ['POST'])
+@reservations_api.route('/reservations', methods = ['POST'])
 def create_reservation():
     data = request.get_json()
     
@@ -28,13 +47,20 @@ def create_reservation():
     return jsonify(reservation.serialize()), 201
 
 # READ (all)
-@reservations_api.route('/reservations', method = ['GET'])
+@reservations_api.route('/reservations', methods = ['GET'])
 def get_reservations():
     reservations = Reservation.query.all()
-    return jsonify([reservation.serialize() for reservation in reservations]), 200
+    return jsonify([{'id': reservation.id,
+                     'client_id': reservation.client_id,
+                     'car_id': reservation.car_id,
+                     'location_id': reservation.location_id,
+                     'date': reservation.date,
+                     'start_of_rental': reservation.start_of_rental,
+                     'end_of_rental' : reservation.end_of_rental,
+                     'total_cost' : reservation.total_cost} for reservation in reservations]), 200
 
 # READ (each)
-@reservations_api.route('/reservations/<int:id>', method = ['GET'])
+@reservations_api.route('/reservations/<int:id>', methods = ['GET'])
 def get_reservation(id):
     reservation = Reservation.query.get(id)
     if reservation is None:
@@ -43,7 +69,7 @@ def get_reservation(id):
     return jsonify(reservation.serialize()), 200
 
 # UPDATE
-@reservations_api.route('/reservations/<int:id>', method = ['PATCH'])
+@reservations_api.route('/reservations/<int:id>', methods = ['PATCH'])
 def update_reservation(id):
     reservation = Reservation.query.get(id)
     if reservation is None:
@@ -86,7 +112,7 @@ def update_reservation(id):
 
 
 # DELETE
-@reservations_api.route('/reservations/<int:id>', method = ['DELETE'])
+@reservations_api.route('/reservations/<int:id>', methods = ['DELETE'])
 def delete_reservation(id):
     reservation = Reservation.query.get(id)
     if reservation is None:
@@ -95,3 +121,7 @@ def delete_reservation(id):
     db.session.delete(reservation)
     db.session.commit()
     return '', 204
+
+# Run
+if __name__ == '__main__':
+    reservations_api.run(port = 8014, debug = True)
