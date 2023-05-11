@@ -14,15 +14,15 @@ DONE:
 - Load Balancer
 
 TO DO:
+ 
+1. Backend:
+   - Implementar CORS
+
+2. Frontend:
+    - A puro ChatGPT sacamos los HTMLs, CSSs y JSs
+    - Y almacenamos (docker/S3)
     
-1. Frontend:
-    Lo mismo que en backend, probamos local y de ahi a contenedores
-    - Crear una web que use las APIs
-        - No tengo ni idea de çómo hacerla con un framework de javascript (como Vue).
-        - Si alguien sabe, que lo intente. Caso contrario probamos con puro HTML
-    - Probar la web en container/S3:
-    
-2. El resto:
+3. El resto:
     Mas que ser lo ultimo, creo que deberia realizarse en paralelo con la aplicacion
     - Lo del diagrama de solucion (CASI LISTO) falta consultar 
     - La documentacion de la aplicacion (el readme) (opcional
