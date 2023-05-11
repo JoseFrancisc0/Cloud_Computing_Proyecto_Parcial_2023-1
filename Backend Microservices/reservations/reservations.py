@@ -1,11 +1,13 @@
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 
 # Flask/SQLAlchemy instance
 reservations_api = Flask(__name__)
 reservations_api.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:nKaqQ1wlHFBq3cGCvB6u@database-proyecto.crt5dlbdpqks.us-east-1.rds.amazonaws.com:5432/postgres"
 reservations_api.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(reservations_api)
+CORS(reservations_api)
 
 # Client Model
 class Client(db.Model):
@@ -26,6 +28,7 @@ class Car(db.Model):
     type_of_car = db.Column(db.String(30), nullable = False)
     year_car = db.Column(db.Integer, nullable = False)
     cost_per_day = db.Column(db.Integer, nullable = False)
+    image = db.Column(db.String(150), nullable = False)
     def __repr__(self):
         return f'<Car {self.id}>'
     
