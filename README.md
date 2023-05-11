@@ -15,14 +15,11 @@ DONE:
 
 TO DO:
  
-1. Backend:
-   - Implementar CORS
-
-2. Frontend:
+1. Frontend:
     - A puro ChatGPT sacamos los HTMLs, CSSs y JSs
     - Y almacenamos (docker/S3)
     
-3. El resto:
+2. El resto:
     Mas que ser lo ultimo, creo que deberia realizarse en paralelo con la aplicacion
     - Lo del diagrama de solucion (CASI LISTO) falta consultar 
     - La documentacion de la aplicacion (el readme) (opcional
