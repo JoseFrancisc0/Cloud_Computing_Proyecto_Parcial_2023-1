@@ -83,4 +83,4 @@ def delete_client(id):
 
 # Run
 if __name__ == '__main__':
-    clients_api.run(port = 8011, debug = True)
+    clients_api.run(host = '0.0.0.0', port = 8011, debug = True)
