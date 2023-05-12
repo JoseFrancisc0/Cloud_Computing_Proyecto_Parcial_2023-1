@@ -105,4 +105,4 @@ def delete_car(id):
 
 # Run
 if __name__ == '__main__':
-    cars_api.run(port = 8012, debug = True)
+    cars_api.run(host = '0.0.0.0', port = 8012, debug = True)
