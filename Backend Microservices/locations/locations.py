@@ -84,4 +84,4 @@ def delete_location(id):
 
 # Run
 if __name__ == '__main__':
-    locations_api.run(port = 8013, debug = True)
+    locations_api.run(host = '0.0.0.0', port = 8013, debug = True)
