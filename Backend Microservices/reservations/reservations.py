@@ -154,4 +154,4 @@ def delete_reservation(id):
 
 # Run
 if __name__ == '__main__':
-    reservations_api.run(port = 8014, debug = True)
+    reservations_api.run(host = '0.0.0.0', port = 8014, debug = True)
