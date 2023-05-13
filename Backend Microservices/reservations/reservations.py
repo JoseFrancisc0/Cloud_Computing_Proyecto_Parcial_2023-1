@@ -12,7 +12,7 @@ CORS(reservations_api)
 # Client Model
 class Client(db.Model):
     __tablename__ = 'clients'
-    id = db.Column(db.Integer, primary_key = True, nullable = False)
+    id = db.Column(db.String(8), primary_key = True, nullable = False)
     firstname = db.Column(db.String(30), nullable = False)
     lastname = db.Column(db.String(30), nullable = False)
 
@@ -45,13 +45,23 @@ class Location(db.Model):
 class Reservation(db.Model):
     __tablename__ = 'reservations'
     id = db.Column(db.Integer, primary_key = True, nullable = False)
-    client_id = db.Column(db.Integer, db.ForeignKey('clients.id'), nullable = False)
+    client_id = db.Column(db.String(8), db.ForeignKey('clients.id'), nullable = False)
     car_id = db.Column(db.Integer, db.ForeignKey('cars.id'), nullable = False)
     location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable = False)
     date = db.Column(db.DateTime, nullable = False)
     start_of_rental = db.Column(db.DateTime, nullable = False)
     end_of_rental = db.Column(db.DateTime, nullable = False)
     total_cost = db.Column(db.Float, nullable = False)
+
+# 404 Error Handler
+@reservations_api.errorhandler(404)
+def not_found(error):
+    return jsonify({'error' : 'Not found.'}), 404
+
+# 500 Error Handler
+@reservations_api.errorhandler(500)
+def internal_server_error(error):
+    return jsonify({'error' : 'Internal server error.'}), 500
 
 # API ENDPOINTS
 # CREATE
@@ -61,20 +71,20 @@ def create_reservation():
     
     client = Client.query.get(data['client_id'])
     if client is None:
-        return jsonify({'error': 'Client not found'}), 404
+        return not_found(404)
 
     car = Car.query.get(data['car_id'])
     if car is None:
-        return jsonify({'error': 'Car not found'}), 404
+        return not_found(404)
 
     location = Location.query.get(data['location_id'])
     if location is None:
-        return jsonify({'error': 'Location not found'}), 404
+        return not_found(404)
 
     reservation = Reservation(client_id = data['client_id'], car_id = data['car_id'], location_id = data['location_id'], date = data['date'], start_of_rental = data['start_of_rental'], end_of_rental = data['end_of_rental'], total_cost = data['total_cost'])
     db.session.add(reservation)
     db.session.commit()
-    return jsonify(reservation.serialize()), 201
+    return jsonify({'message': 'Reservation created sucessfully'}), 201
 
 # READ (all)
 @reservations_api.route('/reservations', methods = ['GET'])
@@ -94,16 +104,23 @@ def get_reservations():
 def get_reservation(id):
     reservation = Reservation.query.get(id)
     if reservation is None:
-        return jsonify({'error' : 'Reservation not found'}), 404
+        return not_found(404)
     
-    return jsonify(reservation.serialize()), 200
+    return jsonify({'id': reservation.id,
+                     'client_id': reservation.client_id,
+                     'car_id': reservation.car_id,
+                     'location_id': reservation.location_id,
+                     'date': reservation.date,
+                     'start_of_rental': reservation.start_of_rental,
+                     'end_of_rental' : reservation.end_of_rental,
+                     'total_cost' : reservation.total_cost}), 200
 
 # UPDATE
 @reservations_api.route('/reservations/<int:id>', methods = ['PATCH'])
 def update_reservation(id):
     reservation = Reservation.query.get(id)
     if reservation is None:
-        return jsonify({'error' : 'Reservation not found'}), 404
+        return not_found(404)
 
     data = request.get_json()
 
@@ -117,14 +134,14 @@ def update_reservation(id):
     if 'car_id' in data:
         car = Car.query.get(data['car_id'])
         if car is None:
-            return jsonify({'error' : 'Car not found'}), 404
+            return not_found(404)
         else:
             reservation.car_id = data['car_id']
     
     if 'location_id' in data:
         location = Location.query.get(data['location_id'])
         if location is None:
-            return jsonify({'error' : 'Location not found'}), 404
+            return not_found(404)
         else:
             reservation.car_id = data['location_id']
     
@@ -138,19 +155,18 @@ def update_reservation(id):
         reservation.total_cost = data['total_cost']
     
     db.session.commit()
-    return jsonify(reservation.serialize()), 200
-
+    return jsonify({'message': 'Reservation updated successfully'}), 200
 
 # DELETE
 @reservations_api.route('/reservations/<int:id>', methods = ['DELETE'])
 def delete_reservation(id):
     reservation = Reservation.query.get(id)
     if reservation is None:
-        return jsonify({'error' : 'Reservation not found'}), 404
+        return not_found(404)
     
     db.session.delete(reservation)
     db.session.commit()
-    return '', 204
+    return jsonify({'message': 'Reservation deleted successfully'}), 204
 
 # Run
 if __name__ == '__main__':

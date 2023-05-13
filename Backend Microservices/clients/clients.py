@@ -12,7 +12,7 @@ CORS(clients_api)
 # Client Model
 class Client(db.Model):
     __tablename__ = 'clients'
-    id = db.Column(db.Integer, primary_key = True, nullable = False)
+    id = db.Column(db.String(8), primary_key = True, nullable = False)
     firstname = db.Column(db.String(30), nullable = False)
     lastname = db.Column(db.String(30), nullable = False)
 
@@ -33,7 +33,7 @@ def internal_server_error(error):
 @clients_api.route('/clients', methods = ['POST'])
 def create_client():
     data = request.get_json()
-    client = Client(firstname = data['firstname'], lastname = data['lastname'])
+    client = Client(id = data['id'], firstname = data['firstname'], lastname = data['lastname'])
     db.session.add(client)
     db.session.commit()
     return jsonify({'message' : 'Client created successfully'}), 201
@@ -47,15 +47,17 @@ def get_clients():
                      'lastname': client.lastname} for client in clients]), 200
 
 # READ (each) API Endpoint
-@clients_api.route('/clients/<int:id>', methods = ['GET'])
+@clients_api.route('/clients/<string:id>', methods = ['GET'])
 def get_client(id):
     client = Client.query.get(id)
     if client is None:
         return not_found(404)
-    return jsonify(client.serialize()), 200
+    return jsonify({'id': client.id,
+                     'firstname': client.firstname,
+                     'lastname': client.lastname}), 200
 
 # UPDATE API Endpoint
-@clients_api.route('/clients/<int:id>', methods = ['PATCH'])
+@clients_api.route('/clients/<string:id>', methods = ['PATCH'])
 def update_client(id):
     client = Client.query.get(id)
 
@@ -71,7 +73,7 @@ def update_client(id):
     return jsonify({'message' : 'Client updated successfully'}), 200
 
 # DELETE API Endpoint
-@clients_api.route('/clients/<int:id>', methods = ['DELETE'])
+@clients_api.route('/clients/<string:id>', methods = ['DELETE'])
 def delete_client(id):
     client = Client.query.get(id)
     if client is None:
