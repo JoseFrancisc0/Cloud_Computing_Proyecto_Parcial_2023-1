@@ -1,3 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+  }
+  
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: blue;
+    color: white;
+    padding: 10px;
+    margin: 0px;
+  }
+  
+  .header-nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+  }
+  
+  .header-nav a:hover {
+    background-color: white;
+    color: blue;
+  }
+  
+  .header-nav .header-divider {
+    height: 60px;
+    width: 2px;
+    background-color: white;
+    margin: 0 10px;
+  }
+  
+  .header-rent-btn {
+    background-color: orange;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
