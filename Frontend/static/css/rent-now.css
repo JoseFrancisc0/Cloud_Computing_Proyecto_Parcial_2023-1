@@ -1,52 +1,134 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-  }
-  
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #F0F8FF;
+}
+
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: blue;
-    color: white;
-    padding: 10px;
-    margin: 0px;
-  }
-  
-  .header-nav {
-    display: flex;
-    align-items: center;
-  }
-  
-  .header-nav a {
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-  }
-  
-  .header-nav a:hover {
-    background-color: white;
-    color: blue;
-  }
-  
-  .header-nav .header-divider {
-    height: 60px;
-    width: 2px;
-    background-color: white;
-    margin: 0 10px;
-  }
-  
-  .header-rent-btn {
-    background-color: orange;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: blue;
+  color: white;
+  padding: 0;
+  margin: 0;
+  height: 80px;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+}
+
+.header-nav a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.header-nav a:hover {
+  background-color: white;
+  color: blue;
+}
+
+.header-nav .header-divider {
+  height: 60px;
+  width: 2px;
+  background-color: white;
+  margin: 0 10px;
+}
+
+.header-rent-btn {
+  background-color: orange;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
 
 table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    padding: 5px;
-    text-align: left;
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 5px;
+  text-align: left;
+}
+
+form {
+border: 2px solid #4169E1;
+padding: 20px;
+border-radius: 10px;
+background-color: #F0F8FF;
+margin: 40px;
+}
+
+label {
+color: #4169E1;
+}
+
+input[type=text],
+input[type=date] {
+border: 2px solid #4169E1;
+border-radius: 5px;
+padding: 10px;
+font-size: 16px;
+color: #4169E1;
+}
+
+button[type=submit] {
+background-color: #4169E1;
+color: #FFF;
+border: none;
+border-radius: 5px;
+padding: 10px 20px;
+font-size: 16px;
+cursor: pointer;
+margin-top: 10px;
+}
+
+button[type=submit]:disabled {
+opacity: 0.5;
+cursor: not-allowed;
+}
+
+/* Style the cars and locations tables */
+table {
+border-collapse: collapse;
+width: 100%;
+}
+
+th, td {
+text-align: left;
+padding: 8px;
+}
+
+th {
+background-color: #4169E1;
+color: #FFF;
+}
+
+tr:nth-child(even) {
+background-color: #F0F8FF;
+}
+
+tr:hover {
+background-color: #ADD8E6;
+}
+
+#confirmRent {
+display: block;
+width: 50%;
+margin: 0 auto;
+background-color: #4169E1;
+color: #FFF;
+border: none;
+border-radius: 5px;
+padding: 20px;
+font-size: 24px;
+cursor: pointer;
+margin-bottom: 20px;
+}
+
+h1 {
+margin: 40px;
 }

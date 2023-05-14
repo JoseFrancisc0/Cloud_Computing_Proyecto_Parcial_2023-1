@@ -1,48 +1,50 @@
 body {
-    margin: 0;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
 }
 
-/* Banner */
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: blue;
-    color: white;
-    padding: 10px;
-    margin: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: blue;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 0px;
 }
-  
+
 .header-nav {
-    display: flex;
-    align-items: center;
-  }
-  
-  .header-nav a {
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-  }
-  
-  .header-nav a:hover {
-    background-color: white;
-    color: blue;
-  }
-  
-  .header-nav .header-divider {
-    height: 60px;
-    width: 2px;
-    background-color: white;
-    margin: 0 10px;
-  }
-  
-  .header-rent-btn {
-    background-color: orange;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-  }
+  display: flex;
+  align-items: center;
+}
+
+.header-nav a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.header-nav a:hover {
+  background-color: white;
+  color: blue;
+}
+
+.header-nav .header-divider {
+  height: 60px;
+  width: 2px;
+  background-color: white;
+  margin: 0 10px;
+}
+
+.header-rent-btn {
+  background-color: orange;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
 
 /* Content */
 section {
