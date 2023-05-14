@@ -1,22 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Car Rental</title>
-    <link rel="stylesheet" href="../static/css/car-list.css">
-  </head>
-  <body>
-    <header>
-      <h1>Car Rental</h1>
-      <form id="search-form">
-        <label for="brand">Brand:</label>
-        <input type="text" id="brand" name="brand">
-        <label for="year">Year:</label>
-        <input type="number" id="year" name="year">
-        <button type="submit">Search</button>
-      </form>
-    </header>
-    <main id="car-container"></main>
-    <script src="../static/js/car-list.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Car Rental</title>
+  <link rel="stylesheet" href="static/css/homepage.css">
+  <link rel="stylesheet" href="../static/css/car-list.css">
+</head>
+<body>
+  <div class="header">
+    <div class="header-logo">
+      <h1>KUCHAU</h1>
+    </div>
+    <div class="header-nav">
+      <a href="../index.html">Welcome</a>
+      <a href="../templates/car-list.html">Cars</a>
+      <a href="location-list.html">Locations</a>
+      <div class="header-divider"></div>
+      <a href="rent-now.html" class="header-rent-btn">Rent Now</a>
+    </div>
+  </div>
+
+  <header>
+    <h1>Car Rental</h1>
+    <form id="search-form">
+      <label for="brand">Brand:</label>
+      <input type="text" id="brand" name="brand">
+      <label for="year">Year:</label>
+      <input type="number" id="year" name="year">
+      <button type="submit">Search</button>
+    </form>
+  </header>
+
+  <main id="car-container"></main>
+
+  <script src="../static/js/car-list.js"></script>
+</body>
 </html>
