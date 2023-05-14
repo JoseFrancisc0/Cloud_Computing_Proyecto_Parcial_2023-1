@@ -46,10 +46,84 @@ createUserForm.addEventListener('input', () => {
   createUserButton.disabled = !createUserForm.checkValidity() || idField.value.length !== 8;
 });
 
-// Submit Select Car form
-selectCarForm.addEventListener('submit', (event) => {
-  event.preventDefault();
+// CAR LIST
+fetch('http://127.0.0.1:8012/cars')
+.then(response => response.json())
+.then(cars => {
+  const carsTableBody = document.getElementById('cars-table-body');
+  cars.forEach(car => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td><input type="radio" name="car" value="${car.id}"></td>
+      <td>${car.id}</td>
+      <td>${car.brand}</td>
+      <td>${car.model}</td>
+      <td>${car.type_of_car}</td>
+      <td>${car.year_car}</td>
+      <td>${car.cost_per_day}</td>
+    `;
+    carsTableBody.appendChild(row);
+  });
+})
+.catch(error => console.error(error));
 
-  const car = selectCarForm.elements['car'].value;
-  alert(`Car selected: ${car}`);
+const carsForm = document.getElementById('cars-form');
+carsForm.addEventListener('submit', event => {
+event.preventDefault();
+const selectedCarId = carsForm.elements.car.value;
+console.log(`Selected car ID: ${selectedCarId}`);
+// Do something with the selected car ID, such as submitting it to a server
 });
+
+// LOCATION LIST
+fetch('http://127.0.0.1:8013/locations')
+.then(response => response.json())
+.then(locations => {
+  const locationsTableBody = document.getElementById('locations-table-body');
+  locations.forEach(location => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td><input type="radio" name="location" value="${location.id}"></td>
+      <td>${location.id}</td>
+      <td>${location.address}</td>
+      <td>${location.district}</td>
+    `;
+    locationsTableBody.appendChild(row);
+  });
+})
+.catch(error => console.error(error));
+
+const locationsForm = document.getElementById('locations-form');
+locationsForm.addEventListener('submit', event => {
+event.preventDefault();
+const selectedLocationId = locationsForm.elements.location.value;
+console.log(`Selected location ID: ${selectedLocationId}`);
+// Do something with the selected location ID, such as submitting it to a server
+});
+
+/// DATE SELECTOR
+
+function saveDates(){
+  // Get the values of the start and end dates
+  var startDate = new Date(document.getElementById("start-date").value);
+  var endDate = new Date(document.getElementById("end-date").value);
+
+  // Add one day to the start and end dates
+  var oneDayMs = 24 * 60 * 60 * 1000; // One day in milliseconds
+  startDate.setTime(startDate.getTime() + oneDayMs);
+  endDate.setTime(endDate.getTime() + oneDayMs);
+
+  // Calculate the difference in milliseconds
+  var differenceInMs = endDate.getTime() - startDate.getTime();
+
+  // Convert the difference to days
+  var differenceInDays = differenceInMs / (1000 * 60 * 60 * 24);
+
+  // Save the current date
+  const currentDate = new Date().toISOString().slice(0,10);
+
+  console.log(`Selected start date: ${startDate}`);
+  console.log(`Selected end date: ${endDate}`);
+  console.log(`Difference: ${differenceInDays}`);
+  console.log(`Current date: ${currentDate}`);
+}
