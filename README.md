@@ -12,15 +12,15 @@ DONE:
 - Backend (4 APIs en contenedores)
 - MVs de Produccion
 - Load Balancer
+- Basic functional Frontend
 
 TO DO:
  
 1. Frontend:
-    - A puro ChatGPT sacamos los HTMLs, CSSs y JSs
-    - Y almacenamos (docker/S3)
+    - Mas css
+    - Meterlo en Bucket S3
     
 2. El resto:
-    Mas que ser lo ultimo, creo que deberia realizarse en paralelo con la aplicacion
-    - Lo del diagrama de solucion (CASI LISTO) falta consultar 
-    - La documentacion de la aplicacion (el readme) (opcional
+    - Lo del diagrama de solucion (CASI LISTO)
+    - La documentacion de la aplicacion (el readme) Casi lo mismo del ppt
     - Un ppt para la presentacion 
