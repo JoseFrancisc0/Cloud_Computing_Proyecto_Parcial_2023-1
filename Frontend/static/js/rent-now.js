@@ -17,7 +17,7 @@ createUserForm.addEventListener('submit', async (event) => {
     lastname: clientLastName
   };
   try {
-    const response = await fetch('http://127.0.0.1:8011/clients', {
+    const response = await fetch('http://lb-proyecto-prod-638305711.us-east-1.elb.amazonaws.com:8011/clients', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -46,7 +46,7 @@ createUserForm.addEventListener('input', () => {
 var carId, carCostPerDay;
 let cars; // define the cars array as a global variable
 
-		fetch('http://127.0.0.1:8012/cars')
+		fetch('http://lb-proyecto-prod-638305711.us-east-1.elb.amazonaws.com:8012/cars')
 			.then(response => response.json())
 			.then(data => {
 				cars = data; // assign the fetched data to the cars array
@@ -81,7 +81,7 @@ let cars; // define the cars array as a global variable
 
 // LOCATION LIST
 var locationId;
-fetch('http://127.0.0.1:8013/locations')
+fetch('http://lb-proyecto-prod-638305711.us-east-1.elb.amazonaws.com:8013/locations')
 .then(response => response.json())
 .then(locations => {
   const locationsTableBody = document.getElementById('locations-table-body');
@@ -151,7 +151,7 @@ confirmRentButton.addEventListener('click', async (event) => {
     };
 
     try {
-        const response = await fetch('http://127.0.0.1:8014/reservations', {
+        const response = await fetch('http://lb-proyecto-prod-638305711.us-east-1.elb.amazonaws.com:8014/reservations', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

@@ -60,7 +60,7 @@ function handleSearch(event) {
 
 // Fetch the car list from the API
 let cars;
-fetch('http://127.0.0.1:8012/cars')
+fetch('http://lb-proyecto-prod-638305711.us-east-1.elb.amazonaws.com:8012/cars')
   .then(response => response.json())
   .then(data => {
     cars = data;

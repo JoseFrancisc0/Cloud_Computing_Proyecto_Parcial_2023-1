@@ -4,7 +4,7 @@ const searchForm = document.getElementById('search-form');
 let locations = [];
 
 async function getLocations() {
-  const response = await fetch('http://127.0.0.1:8013/locations');
+  const response = await fetch('http://lb-proyecto-prod-638305711.us-east-1.elb.amazonaws.com:8013/locations');
   const data = await response.json();
   locations = data;
   showLocations(locations);
