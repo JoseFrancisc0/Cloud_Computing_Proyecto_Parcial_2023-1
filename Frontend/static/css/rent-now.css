@@ -62,6 +62,14 @@ background-color: #F0F8FF;
 margin: 40px;
 }
 
+#date-form {
+  border: 2px solid #4169E1;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #F0F8FF;
+  margin: 40px;
+  }
+
 label {
 color: #4169E1;
 }
