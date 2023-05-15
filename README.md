@@ -13,14 +13,9 @@ DONE:
 - MVs de Produccion
 - Load Balancer
 - Basic functional Frontend
+- FUll frontend
+- S3 bucket
+- PPT
+- Diagrama de solucion
 
-TO DO:
- 
-1. Frontend:
-    - Mas css
-    - Meterlo en Bucket S3
-    
-2. El resto:
-    - Lo del diagrama de solucion (CASI LISTO)
-    - La documentacion de la aplicacion (el readme) Casi lo mismo del ppt
-    - Un ppt para la presentacion 
+TODO HECHO 
