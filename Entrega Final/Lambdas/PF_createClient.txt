@@ -1,0 +1,29 @@
+import json
+import boto3
+
+def lambda_handler(event, context):
+    # Entrada (json)
+    main_message = event['Records'][0]['body']
+    json_message = json.loads(main_message)
+    message = json_message['Message']
+    data = json.loads(message)
+    print(data)
+    
+    tenant_id = data['tenant_id']
+    client_id = data['client_id']
+    client_data = data['client_data']
+    # Proceso
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('PF_clients')
+    client = {
+        'tenant_id': tenant_id,
+        'client_id': client_id,
+        'client_data': client_data
+    }
+    response = table.put_item(Item=client)
+    # Salida (json)
+    return {
+        'statusCode': 200,
+        'response': response,
+        'client_data': client_data
+    }
